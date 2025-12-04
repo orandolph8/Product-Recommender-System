@@ -38,6 +38,9 @@ with st.container(key="title_text"):
 if 'user_id' not in st.session_state:
     st.session_state.user_id = ''
 
+if 'user_name' not in st.session_state:
+    st.session_state.user_name = ''
+
 if 'num_recommend' not in st.session_state:
     st.session_state.num_recommend = ''
 
@@ -52,13 +55,20 @@ if 'recon_cache' not in st.session_state:
     
 
 def SwitchMode():
-    if (not st.session_state.results) and (st.session_state.num_recommend == '' or st.session_state.user_id == ''):
+    if (not st.session_state.results) and (st.session_state.num_recommend == '' or (st.session_state.user_id == '' and st.session_state.user_name == '')):
         return
     st.session_state.results = not st.session_state.results
     st.session_state.cached_results = False
 
 def SetUpSearch():
-    st.text_input('Enter User ID:', key="user_id")
+    st.session_state.results = False
+    st.session_state.cached_results = False
+    with st.container():
+        left_column, right_column = st.columns(2) #The () is the size
+        with left_column:
+            st.text_input('Enter User ID:', key="user_id")
+        with right_column:
+            st.text_input('Or Enter User Name:', key="user_name")
     st.text_input('Enter Number of Recommendations:', key='num_recommend')
     
     st.button('Submit', on_click=SwitchMode)
@@ -81,8 +91,17 @@ def LoadData():
 def LoadRecommendations():
     N = int(st.session_state.num_recommend)
     user_id = st.session_state.user_id
+    user_name = st.session_state.user_name.strip().lower()
     
     user_id_to_idx, idx_to_title, user_rated_items, user_id_to_name = LoadData()
+    
+    if user_id != '' and user_id in user_id_to_idx.keys():
+        user_idx = user_id_to_idx[user_id]
+    else:
+        key = [key for key, value in user_id_to_name.items() if value.strip().lower() == user_name]
+        user_id = key[0]
+        user_idx = user_id_to_idx[user_id]
+        
     user_name = user_id_to_name[user_id]
     num_users = len(user_id_to_idx.keys())
     num_items = len(idx_to_title.keys())
@@ -92,7 +111,6 @@ def LoadRecommendations():
     model.load_state_dict(state_dict)
 
     model.eval()
-    user_idx = user_id_to_idx.get(user_id)
     if user_idx is None: # Catch issues here is user_id entered is not found, then print 'Uers ID not found.'
         print(f"User ID {user_id} not found.")
         return
@@ -138,5 +156,3 @@ if st.session_state.results:
             SetUpSearch()
 else:
     SetUpSearch()
-
-
