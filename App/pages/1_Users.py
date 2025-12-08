@@ -13,7 +13,7 @@ css  = '''
 </style>
 '''
 
-with open('./user_id_to_idx.json', 'r') as json_file:
+with open('user_id_to_idx.json', 'r') as json_file:
     user_id_to_idx = json.load(json_file)
 
 with open('user_rated_items.json', 'r') as json_file:
