@@ -74,7 +74,7 @@ def SetUpSearch():
     st.button('Submit', on_click=SwitchMode)
 
 def LoadData():
-    with open('./user_id_to_idx.json', 'r') as json_file:
+    with open('user_id_to_idx.json', 'r') as json_file:
         user_id_to_idx = json.load(json_file)
     
     with open('idx_to_title.json', 'r') as json_file:
