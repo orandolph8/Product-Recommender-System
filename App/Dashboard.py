@@ -8,7 +8,7 @@ css  = '''
 </style>
 '''
 
-st.set_page_config(page_title='Movie Recommendation', page_icon='🎁', layout='wide')
+st.set_page_config(page_title='Product Recommendation', page_icon='🎁', layout='wide')
 
 st.markdown(css, unsafe_allow_html=True)
 
