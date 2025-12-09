@@ -1,8 +1,7 @@
 import json
 import pandas as pd
 import streamlit as st
-import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 css  = '''
 <style>
     .st-key-title_text {
@@ -14,14 +13,14 @@ css  = '''
 </style>
 '''
 
-with open(os.path.join(BASE_DIR, "user_id_to_idx.json"), "r") as json_file:
+with open('user_id_to_idx.json', 'r') as json_file:
     user_id_to_idx = json.load(json_file)
 
-with open(os.path.join(BASE_DIR, "user_rated_items.json"), "r") as json_file:
-    user_rated_items = json.load(json_file)
+with open('user_rated_items.json', 'r') as json_file:
+     user_rated_items = dict(json.load(json_file))
 
-with open(os.path.join(BASE_DIR, "user_id_to_name.json"), "r") as json_file:
-    user_id_to_name = json.load(json_file)
+with open('user_id_to_name.json', 'r') as json_file:
+     user_id_to_name = dict(json.load(json_file))
 
 
 df = pd.DataFrame({
