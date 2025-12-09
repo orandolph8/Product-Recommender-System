@@ -46,7 +46,7 @@ def ChangePage(direction):
         st.session_state.page_text =  f'{st.session_state.current_page} of {pages}'
 
 
-st.set_page_config(page_title='Movie Recommendation', page_icon='🎁', layout='wide')
+st.set_page_config(page_title='Product Recommendation', page_icon='🎁', layout='wide')
 
 st.markdown(css, unsafe_allow_html=True)
 
