@@ -1,23 +1,11 @@
-Product Recommender System
+# Product Recommender System
+## Prototype using NLP & Deep Learning
+Presented by Owen Randolph, Laine Close, and Marcos Fernandez as part of DSCI 590 – Introduction to Natural Language Processing at Indiana University.
 
-Prototype Using NLP & Deep Learning
-
-Overview
-
-This repository contains a prototype product recommender system developed as a final project for DSCI 590 – NLP & Deep Learning at Indiana University Bloomington (Fall 2025).
-
-The system demonstrates the core building blocks of modern recommender systems, including:
-
-Text preprocessing and tokenization
-
-NLP-based semantic embeddings
-
-Collaborative filtering with neural networks
-
-User–item index mapping
-
-Top-N recommendation generation
-
-A lightweight interactive interface
-
-The project is intended as a conceptual and technical prototype, not a production-ready recommender.
+## Overview
+- Text preprocessing and tokenization
+- NLP-based semantic embeddings
+- Collaborative filtering with neural networks
+- User–item index mapping
+- Top-N recommendation generation
+- A lightweight interactive interface
